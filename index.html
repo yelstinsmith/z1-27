@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cifrado A1Z27 en español</title>
+    <script>
+        function cifrar_a1z27_espanol() {
+            var alfabeto = 'abcdefghijklmnñopqrstuvwxyz';
+            var mensaje = document.getElementById('mensaje').value;
+            var mensaje_cifrado = '';
+            for (var i = 0; i < mensaje.length; i++) {
+                var letra = mensaje[i].toLowerCase();
+                if (alfabeto.includes(letra)) {
+                    var indice = alfabeto.indexOf(letra) + 1;
+                    mensaje_cifrado += indice + ' ';
+                }
+            }
+            document.getElementById('resultado').innerText = mensaje_cifrado.trim();
+        }
+
+        function descifrar_a1z27_espanol() {
+            var alfabeto = 'abcdefghijklmnñopqrstuvwxyz';
+            var mensaje_cifrado = document.getElementById('mensaje').value;
+            var mensaje = '';
+            var numeros = mensaje_cifrado.split(' ');
+            for (var i = 0; i < numeros.length; i++) {
+                var numero = numeros[i];
+                if (!isNaN(numero)) {
+                    var letra = alfabeto[parseInt(numero) - 1];
+                    mensaje += letra;
+                }
+            }
+            document.getElementById('resultado').innerText = mensaje;
+        }
+    </script>
+</head>
+<body>
+    <label for="mensaje">Mensaje:</label><br>
+    <input type="text" id="mensaje"><br>
+    <button onclick="cifrar_a1z27_espanol()">Cifrar</button>
+    <button onclick="descifrar_a1z27_espanol()">Descifrar</button>
+    <p id="resultado"></p>
+</body>
+</html>
